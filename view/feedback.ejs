@@ -34,10 +34,10 @@
                                     <% find_feedback.forEach(function(feedback){ %>                           
                                         <tr>
                                                 <td><%= feedback.telephone %></td>
-                                                <td><%= feedback.city %></td>
+                                                <td><%= feedback.title %></td>
                                                 <td><%= moment(feedback.feedBackCreated).format("DD MM YYYY"); %></td>
                                                 <td>
-                                                    <a href="../deleteFeedBack/<%= feedback._id %>" class="btn btn-sm btn-warning"><i class="fas fa-trash"></i></a>
+                                                    <a href="../../feedback/deleteFeedBack/<%= feedback._id %>" class="btn btn-sm btn-warning"><i class="fas fa-trash"></i></a>
                                                 </td>
                                                 <td><%= feedback.description %></td>
                                             </tr> 

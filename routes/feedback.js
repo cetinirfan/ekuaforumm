@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const Feedback = require('../services/modals/Operatings');
+const Feedback = require('../services/modals/Feedback');
 const moment = require('moment');
 require('moment/locale/tr');
 const verifyToken = require('../services/middleware/verify-token');
@@ -23,7 +23,7 @@ router.get('/deleteFeedBack/:id',verifyToken,(req,res)=>{
         if(err){
             return res.render('error.ejs');
         }
-        return res.send("<script> alert('Geri Bildirim Başarıyla Silindi'); window.location = '/feedback/feedback'; </script>")
+        return res.send("<script> alert('Geri Bildirim Başarıyla Silindi'); window.location = '/../../feedback/feedback/'; </script>")
     });
 
 });

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const Operatings = require('../services/modals/Operatings');
 const Staff = require('../services/modals/Staff');
+const Admin = require('../services/modals/Admin');
 const moment = require('moment');
 require('moment/locale/tr');
 const verifyToken = require('../services/middleware/verify-token');
@@ -59,7 +60,9 @@ router.get('/pending_operatings',verifyToken,(req,res)=>{
         }
         res.render('validation.ejs',{
             find_operating,
-            title:'Onay Bekleyen İşletmeler'
+            title:'Onay Bekleyen İşletmeler',
+            moment
+
         })
     });
 });
@@ -78,7 +81,7 @@ router.get('/deleteOperating/:_id',verifyToken,(req,res)=>{
         if(err){
             return res.render('error.ejs');
         }
-        return res.send("<script> alert('İşletme Başarıyla Silindi'); window.location = '/operatings/operatings/'; </script>")
+        return res.send("<script> alert('İşletme Başarıyla Silindi'); window.location = '../../operatings/operatings/'; </script>")
     });
 });
 
@@ -87,7 +90,7 @@ router.get('/updateOperatingPhoto/:_id',verifyToken,(req,res)=>{
         if(err){
             return res.render('error.ejs');
         }
-        return res.send("<script> alert('Resim Başarıyla Sıfırlandı'); window.location = '/operatings/operatings/'; </script>")
+        return res.send("<script> alert('Resim Başarıyla Sıfırlandı'); window.location = '../../operatings/operatings/'; </script>")
     });
 });
 
@@ -97,7 +100,7 @@ router.get('/deleteStaff/:_id',verifyToken,(req,res)=>{
         if(err){
             return res.render('error.ejs');
         }
-        return res.send("<script> alert('Çalışan Başarıyla Silindi'); window.location = '/operatings/operating_profile/"+id+"'; </script>")
+        return res.send("<script> alert('Çalışan Başarıyla Silindi'); window.location = '../../operatings/operating_profile/"+id+"'; </script>")
     });
 });
 
@@ -107,19 +110,20 @@ router.get('/updateStaffPhoto/:_id',verifyToken,(req,res)=>{
             if(err){
                 return res.render('error.ejs');
             }
-            return res.send("<script> alert('Resim Başarıyla Sıfırlandı'); window.location = '/operatings/operating_profile/"+id+"'; </script>")
+            return res.send("<script> alert('Resim Başarıyla Sıfırlandı'); window.location = '../../operatings/operating_profile/"+id+"'; </script>")
         });
 });
 
 
 router.get('/kayit_onayla/:id',verifyToken,(req,res)=>{
-    Operatings.findOneAndUpdate({_id:req.params.id},{$set:{operatingType:1,validationAdmin:adminFullName,operatingValidationCreated:Date.now()}},(err,find_operating)=>{
-        if(err){
-            return res.render('error.ejs');
-        }
-        return res.send("<script> alert('Onaylama işlemi başarılı.'); window.location = '/operatings/pending_operatings'; </script>")
-    });
-
+    Admin.findOne({_id:req._id},(err,find_admin)=>{
+        Operatings.findOneAndUpdate({_id:req.params.id},{$set:{operatingType:1,validationAdmin:find_admin.adminFullName,operatingValidationCreated:Date.now()}},(err,find_operating)=>{
+            if(err){
+                return res.render('error.ejs');
+            }
+            return res.send("<script> alert('Onaylama işlemi başarılı.'); window.location = '../../operatings/pending_operatings'; </script>")
+        });
+    })
 });
 
 router.get('/kayit_sil/:id',verifyToken,(req,res)=>{
@@ -127,7 +131,7 @@ router.get('/kayit_sil/:id',verifyToken,(req,res)=>{
         if(err){
             return res.render('error.ejs');
         }
-        return res.send("<script> alert('İşletme kaydı silindi'); window.location = '/operatings/pending_operatings'; </script>")
+        return res.send("<script> alert('İşletme kaydı silindi'); window.location = '../../operatings/pending_operatings'; </script>")
     });
 
 });

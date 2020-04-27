@@ -38,10 +38,10 @@
                                                         <td><%= operating.telephone %></td>
                                                         <td><%= operating.city %></td>
                                                         <td><%= operating.district %></td>
-                                                        <td><%= operating.address %></td>
+                                                        <td><%= moment(operating.operatingCreated).format("DD MM YYYY"); %></td>
                                                         <td>                                                       
-                                                            <a  href="../kayit_onayla/<%= operating._id %>" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
-                                                            <a  href="../kayit_sil/<%= operating._id %>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                            <a  href="../../operatings/kayit_onayla/<%= operating._id %>" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                                                            <a  href="../../operatings/kayit_sil/<%= operating._id %>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                                         </td>
                                                     </tr>
                                                 <% }); %> 
