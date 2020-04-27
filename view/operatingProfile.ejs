@@ -1,0 +1,233 @@
+<%- include('./src/header'); %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <h4 class="page-title mb-2"><i class="dripicons-store"></i>  İşletme Profil</h4>  
+            <div class="">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">eKuaförüm</a></li>
+                    <li class="breadcrumb-item"><a href="/operatings/operatings/">İşletmeler</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);"> İşletme Profil</a></li>
+                </ol>
+            </div>                                      
+        </div>
+    </div>
+</div>
+<%- include('./src/sidebar'); %>
+    <div class="page-content">
+        <div class="container-fluid"> 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body border-bottom">
+                            <div class="fro_profile">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="fro_profile-main">
+                                            <div class="fro_profile-main-pic">
+                                                <img src="<%= find_operating.operatingPhoto%>"  height="140" width="200" >
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-lg-2">
+                                        <h4 class="fro_profile-main"><%= find_operating.operatingName%></h4>   
+                                        <ul class="list-unstyled mb-0">
+                                            <li class=""><i class="mdi mdi-phone mr-2 text-success font-18"></i> <b> Telefon </b> : <%= find_operating.telephone%></li>
+                                            <li class="mt-2"><i class="mdi mdi-map-marker text-success font-18 mt-2 mr-2"></i> <b>Adres</b> : <%= find_operating.city%>/<%= find_operating.district%></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="card shadow-none overflow-hidden">
+                                            <div class="card-body bg-gradient1">
+                                                <div class="">
+                                                    <div class="card-icon">
+                                                        <i class="far fa-user"></i>
+                                                    </div>
+                                                    <h2 class="font-weight-bold text-white"><%= find_staff.length%></h2>
+                                                    <p class="text-white mb-0 font-16">Çalışan Sayısı</p>                                            
+                                                </div>
+                                            </div><!--end card-body-->
+                                        </div><!--end card-->
+                                    </div><!--end col-->
+                                    <div class="col-lg-2">
+                                        <div class="card shadow-none overflow-hidden">
+                                            <div class="card-body bg-gradient3">
+                                                <div class="">
+                                                    <div class="card-icon">
+                                                        <i class="far fa-comment"></i>
+                                                    </div>
+                                                    <h2 class="font-weight-bold text-white"><%= find_operating.commentProperty.commentCount%></h2>
+                                                    <p class="text-white mb-0 font-16">Yorum Sayısı</p>                                            
+                                                </div>
+                                            </div><!--end card-body-->
+                                        </div><!--end card-->
+                                    </div><!--end col-->
+                                    <div class="col-lg-2">
+                                        <div class="card shadow-none  overflow-hidden">
+                                            <div class="card-body bg-gradient2">
+                                                <div class="">
+                                                    <div class="card-icon">
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                    <h2 class="font-weight-bold text-white"><%= find_operating.favorites.length%></h2>
+                                                    <p class="text-white mb-0 font-16">Favori Sayısı</p>                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                            </div><!--end f_profile-->                                                                                
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body profile-nav"> 
+                            <div class="nav flex-column nav-pills" id="profile-tab" aria-orientation="vertical">
+                                <a class="nav-link active" id="profile-dash-tab" data-toggle="pill" href="#profile-dash" aria-selected="true">Çalışanlar</a>
+                                <a class="nav-link d-flex justify-content-between align-items-center" id="profile-pro-stock-tab" data-toggle="pill" href="#profile-pro-stock" aria-selected="false">Yorumlar</a>
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title">HAKKINDA</h4>
+                            <p class="text-muted font-13"><%= find_operating.description%></p>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title mb-3">SUNDUĞU HİZMETLER</h4>   
+                            <ul class="list-unstyled mb-0">
+                                <li class=""><i class="mdi mdi-spa mr-2 text-success font-18"></i> <b> Epilasyon & Güzellik </b> :<% if(find_operating.beautyCenter==1){ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-success rounded"><i class="fas fa-check"></i></span></div><% } else{ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-danger rounded"><i class="fas fa-times"></i></span></div><% } %></li>
+                                <li class="mt-2"><i class="mdi mdi-content-cut text-success font-18 mt-2 mr-2"></i> <b>Kuaför</b> : <% if(find_operating.hairDresser==1){ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-success rounded"><i class="fas fa-check"></i></span></div><% } else{ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-danger rounded"><i class="fas fa-times"></i></span></div><% } %></li>
+                                <li class="mt-2"><i class="mdi mdi-content-cut text-success font-18 mt-2 mr-2"></i> <b>Berber</b> : <% if(find_operating.barber==1){ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-success rounded"><i class="fas fa-check"></i></span></div><% } else{ %>  <div class="avatar-box thumb-xs align-self-center"><span class="avatar-title bg-danger rounded"><i class="fas fa-times"></i></span></div><% } %></li>
+                            </ul>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content" id="profile-tabContent">
+                                <div class="tab-pane fade show active" id="profile-dash">
+                                    <h4 class="header-title mt-0">İŞLETME ÇALIŞANLARI</h4>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Adı Soyadı</th>
+                                                            <th>Kayıt Tarihi</th>
+                                                            <th>İşlemler</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <% find_staff.forEach(function(staff){ %>                           
+                                                            <tr>
+                                                                    <td>
+                                                                        <img src="<%= staff.staffPhoto %>" class="rounded-circle thumb-sm mr-1" /> <%= staff.staffFullName%></a>
+                                                                    </td>
+                                                                    <td><%= moment(staff.staffCreated).format("DD MM YYYY"); %></td>
+                                                                    <td>
+                                                                        <a href="../deleteStaff/<%= staff._id %>" class="btn btn-sm btn-warning"><i class="fas fa-trash"></i></a>
+                                                                        <a href="../updateStaffPhoto/<%= staff._id %>" class="btn btn-sm btn-primary"><i class="fas fa-camera"></i></a>
+                                                                    </td>
+                                                                </tr> 
+                                                          <% }); %> 
+                                                        </tbody>
+                                                    </table>
+                        
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>                                                                                     
+                                </div><!--end tab-pane-->
+                                <div class="tab-pane fade" id="profile-pro-stock">
+                                    <h4 class="mt-0 header-title mb-3">İŞLETME YORUMLARI</h4>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <table id="footable-2" class="table table mb-0" data-show-toggle="true">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Adı Soyadı</th>
+                                                            <th>Puan</th>
+                                                            <th>Yorum Tarihi</th>
+                                                            <th>İşlemler</th>
+                                                            <th data-breakpoints="all" data-title="Konu İçeriği">Konu İçeriği</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <% find_operating.comments.forEach(function(operating){ %>                           
+                                                            <tr>
+                                                                    <td>
+                                                                        <img src="<%= operating.userPhoto %>" class="rounded-circle thumb-sm mr-1" /> <%= operating.userName%></a>
+                                                                    </td>
+                                                                    <td><% if(operating.userRating==1){ %>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <% } %>
+                                                                    <% if(operating.userRating==2){ %>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <% } %> 
+                                                                    <% if(operating.userRating==3){ %>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <% } %> 
+                                                                    <% if(operating.userRating==4){ %>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star-outline  text-warning"></i>
+                                                                        <% } %> 
+                                                                    <% if(operating.userRating==5){ %>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <i class="mdi mdi-star text-warning"></i>
+                                                                        <% } %> </td>
+                                                                    <td><%= moment(operating.commentDate).format("DD MM YYYY"); %></td>
+                                                                    <td>
+                                                                        <a href="../deleteComment/<%= operating._id %>" class="btn btn-sm btn-warning"><i class="fas fa-trash"></i></a>
+                                                                    </td>
+                                                                    <td><%= operating.userComment %></td>
+                                                                </tr> 
+                                                          <% }); %> 
+                                                        </tbody>
+                                                    </table>
+                        
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!--end tab-pen-->
+                            </div>  <!--end tab-content-->                                                                              
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div>
+        </div>
+    </div>
+<%- include('./src/footer'); %>
+                        

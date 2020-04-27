@@ -1,0 +1,63 @@
+<%- include('./src/header'); %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <h4 class="page-title mb-2"><i class="dripicons-view-list"></i>  Alt İşlem Ekle</h4>  
+            <div class="">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">eKuaförüm</a></li>
+                    <li class="breadcrumb-item"><a href="/category/category/">İşlem Ekle</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Alt İşlem Ekle</a></li>
+                </ol>
+            </div>                                      
+        </div>
+    </div>
+</div>
+<%- include('./src/sidebar'); %>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>İşlem Türü Adı</th>
+                                                        <th>İşlemler</th>
+                                                      </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% find_subCategory.categorySub.forEach(function(subCategory){ %>  
+                                                        <tr>
+                                                            <td><%= subCategory.categorySubName %></td>
+                                                            <td>                                                       
+                                                                <a  href="../../category/deleteSubCategory/<%= subCategory._id %>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    <% }); %> 
+                                                </tbody>
+                                            </table>
+                                        </div><!--end /tableresponsive-->
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </div> <!-- end col -->
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">İşlem Türü Ekle</h4>
+                                        <form action='/category/addSubCategory/<%=find_subCategory._id%>' method='POST'>
+                                            <div class="form-group">
+                                                <label for="kategori_adi">İşlem Adı</label>
+                                                <input type="text" class="form-control" name="categorySubName" id="categorySubName" placeholder="İşlem Türü Giriniz...">
+                                            </div>
+                                            <button type="submit" name="action" class="btn btn-primary">Ekle</button>
+                                        </form>                                           
+                                    </div><!--end card-body-->
+                                </div><!--end card-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<%- include('./src/footer'); %>

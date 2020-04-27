@@ -1,0 +1,57 @@
+<%- include('./src/header'); %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <h4 class="page-title mb-2"><i class="dripicons-store"></i>  Onay Bekleyen İşletmeler</h4>  
+            <div class="">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">eKuaförüm</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Onay Bekleyen İşletmeler</a></li>
+                </ol>
+            </div>                                      
+        </div>
+    </div>
+</div>
+<%- include('./src/sidebar'); %>
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title"><%= title %></h4>
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                            <tr>
+                                                <th>Adı Soyadı</th>
+                                                <th>Telefon</th>
+                                                <th>Şehir</th>
+                                                <th>İlçe</th>
+                                                <th>Kayıt Tarihi</th>
+                                                <th>İşlemler</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% find_operating.forEach(function(operating){ %>  
+                                                    <tr>
+                                                        <td><%= operating.operatingName %></td>
+                                                        <td><%= operating.telephone %></td>
+                                                        <td><%= operating.city %></td>
+                                                        <td><%= operating.district %></td>
+                                                        <td><%= operating.address %></td>
+                                                        <td>                                                       
+                                                            <a  href="../kayit_onayla/<%= operating._id %>" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                                                            <a  href="../kayit_sil/<%= operating._id %>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                <% }); %> 
+                                            </tbody>
+                                        </table>
+            
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                    </div>
+                </div>
+<%- include('./src/footer'); %>
